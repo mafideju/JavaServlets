@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+    <servlet>
+        <servlet-name>MainMenuServlet</servlet-name>
+        <servlet-class>com.virtualpairprogrammers.servlets.MainMenuServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainMenuServlet</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MainMenuSearchResultsServlet</servlet-name>
+        <servlet-class>com.virtualpairprogrammers.servlets.MainMenuSearchResultsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainMenuSearchResultsServlet</servlet-name>
+        <url-pattern>/searchResults.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MenuOrderServlet</servlet-name>
+        <servlet-class>com.virtualpairprogrammers.servlets.MenuOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MenuOrderServlet</servlet-name>
+        <url-pattern>/orderMenu.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderReceivedServlet</servlet-name>
+        <servlet-class>com.virtualpairprogrammers.servlets.OrderReceivedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderReceivedServlet</servlet-name>
+        <url-pattern>/orderReceived.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ThankYouServlet</servlet-name>
+        <servlet-class>com.virtualpairprogrammers.servlets.ThankYouServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ThankYouServlet</servlet-name>
+        <url-pattern>/thankYou.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HelloWorldServlet</servlet-name>
+        <servlet-class>com.virtualpairprogrammers.servlets.HelloWorldServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloWorldServlet</servlet-name>
+        <url-pattern>/hello.html</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+    <security-role>
+        <role-name>user</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Order Servlets</web-resource-name>
+            <url-pattern>/orderReceived.html</url-pattern>
+            <url-pattern>/thankYou.html</url-pattern>
+            <url-pattern>/orderMenu.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Staff Pages</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.html</form-login-page>
+            <form-error-page>/error-page.html</form-error-page>
+        </form-login-config>
+    </login-config>
+</web-app> 
